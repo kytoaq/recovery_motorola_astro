@@ -45,6 +45,9 @@ TARGET_USES_UEFI := true
 # Decryption Qualcomm Technologies™ Common
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 
+# GPT Utils
+BOARD_PROVIDES_GPTUTILS := true
+
 # Partition - Size
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_FLASH_BLOCK_SIZE :=
