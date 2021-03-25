@@ -52,9 +52,15 @@ PRODUCT_PACKAGES += \
     bootctrl.sdm710 \
     bootctrl.sdm710.recovery
 
+# Decryption Qualcomm Technologies™ Common
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
+
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
+
