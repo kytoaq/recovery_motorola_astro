@@ -169,3 +169,7 @@ TW_H_OFFSET := -80
 
 # Team Win Recovery - USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+
+# Team Win Recovery - System Props
+TW_OVERRIDE_SYSTEM_PROPS := \
+    "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental"
