@@ -48,6 +48,71 @@ BOARD_USES_QCOM_FBE_DECRYPTION := true
 # GPT Utils
 BOARD_PROVIDES_GPTUTILS := true
 
+# Kernel - CMDLINE
+BOARD_KERNEL_CMDLINE := \
+    console=ttyMSM0,115200,n8 \
+    androidboot.hardware=qcom  \
+    androidboot.console=ttyMSM0 \
+    androidboot.memcg=1 \
+    lpm_levels.sleep_disabled=1 \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
+    msm_rtb.filter=0x237 \
+    service_locator.enable=1 \
+    swiotlb=1 \
+    earlycon=msm_geni_serial,0xA84000 \
+    ehci-hcd.park=3 \
+    androidboot.configfs=true \
+    cgroup.memory=nokmem,nosocket \
+    androidboot.usbcontroller=a600000.dwc3 \
+    printk.devkmsg=on \
+    androidboot.hab.csv=10 \
+    androidboot.hab.product=astro \
+    androidboot.hab.cid=50 \
+    firmware_class.path=/vendor/firmware_mnt/image \
+    androidboot.fastboot=1 \
+    androidboot.selinux=permissive
+
+# Kernel - Mkbootimg Args
+BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_DTB_OFFSET := 0x01f00000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_SECOND_OFFSET := 0x00f00000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+
+BOARD_MKBOOTIMG_ARGS += \
+    --header_version $(BOARD_BOOTIMG_HEADER_VERSION) \
+    --base $(BOARD_KERNEL_BASE) \
+    --dtb_offset $(BOARD_DTB_OFFSET) \
+    --kernel_offset $(BOARD_KERNEL_OFFSET) \
+    --ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
+    --pagesize $(BOARD_KERNEL_PAGESIZE) \
+    --second_offset $(BOARD_KERNEL_SECOND_OFFSET) \
+    --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+
+# Kernel - Instructions
+TARGET_KERNEL_VERSION := 4.9
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+
+TARGET_PREBUILT_KERNEL := $(STAR_PATH)/prebuilt/Image.gz
+BOARD_KERNEL_IMAGE_NAME := Image.gz
+
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_PREBUILT_DTBOIMAGE := $(STAR_PATH)/prebuilt/dtbo.img
+
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+TARGET_PREBUILT_DTB := $(STAR_PATH)/prebuilt/dtb.img
+BOARD_MKBOOTIMG_ARGS += \
+    --dtb $(TARGET_PREBUILT_DTB)
+
+#TARGET_KERNEL_CLANG_COMPILE := true
+#TARGET_KERNEL_CLANG_VERSION :=
+TARGET_KERNEL_SOURCE := kernel/motorola/sdm710
+TARGET_KERNEL_CONFIG := astro_defconfig
+
 # Partition - Size
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_FLASH_BLOCK_SIZE :=
@@ -60,51 +125,9 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE :=
 # Partition - Types
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
-
-# Kernel - CMDLINE
-BOARD_KERNEL_CMDLINE := \
-	console=ttyMSM0,115200,n8 \
-	androidboot.hardware=qcom  \
-	androidboot.console=ttyMSM0 \
-	androidboot.memcg=1 \
-	lpm_levels.sleep_disabled=1 \
-	video=vfb:640x400,bpp=32,memsize=3072000 \
-	msm_rtb.filter=0x237 \
-	service_locator.enable=1 \
-	swiotlb=1 \
-    earlycon=msm_geni_serial,0xA84000 \
-	ehci-hcd.park=3 \
-    androidboot.configfs=true \
-	cgroup.memory=nokmem,nosocket \
-    androidboot.usbcontroller=a600000.dwc3 \
-	printk.devkmsg=on \
-	androidboot.hab.csv=10 \
-	androidboot.hab.product=astro \
-	androidboot.hab.cid=50 \
-	firmware_class.path=/vendor/firmware_mnt/image \
-	androidboot.fastboot=1 \
-	androidboot.selinux=permissive
-
-BOARD_BOOTIMG_HEADER_VERSION := 2
-BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_IMAGE_NAME := Image.gz
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_KERNEL_OFFSET := 0x00008000
-BOARD_RAMDISK_OFFSET := 0x01000000
-
-BOARD_MKBOOTIMG_ARGS += \
-	--kernel_offset $(BOARD_KERNEL_OFFSET) \
-	--ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
-	--tags_offset $(BOARD_KERNEL_TAGS_OFFSET) \
-	--header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-
-TARGET_PREBUILT_KERNEL := $(STAR_PATH)/prebuilt/Image.gz-dtb
-TARGET_PREBUILT_DTB := $(STAR_PATH)/prebuilt/dtb.img
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/motorola/sdm710
-TARGET_KERNEL_CONFIG := astro_defconfig
+BOARD_USES_METADATA_PARTITION := true
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery
 TARGET_RECOVERY_WIPE := $(STAR_PATH)/recovery/root/system/etc/recovery.wipe
