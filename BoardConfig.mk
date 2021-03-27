@@ -106,6 +106,9 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/motorola/sdm710
 TARGET_KERNEL_CONFIG := astro_defconfig
 
+# Recovery
+TARGET_RECOVERY_WIPE := $(STAR_PATH)/recovery/root/system/etc/recovery.wipe
+
 # Symbolic Simlinks
 BOARD_ROOT_EXTRA_SYMLINKS := \
     /mnt/vendor/persist:/persist
