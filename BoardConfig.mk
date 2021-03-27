@@ -130,6 +130,12 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Recovery
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+RECOVERY_SDCARD_ON_DATA := true
+USE_RECOVERY_INSTALLER := true
+RECOVERY_INSTALLER_PATH := bootable/recovery/installer
 TARGET_RECOVERY_WIPE := $(STAR_PATH)/recovery/root/system/etc/recovery.wipe
 
 # Recovery - Modules
