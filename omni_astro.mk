@@ -24,6 +24,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/motorola/astro/device.mk)
+
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := astro
 PRODUCT_NAME := omni_astro
