@@ -183,35 +183,48 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /mnt/vendor/persist:/persist
 
 # Team Win Recovery Configuration
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_RECOVERY_QCOM_RTC_FIX := true
-TARGET_USES_LOGD := true
-
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-TW_EXTRA_LANGUAGES := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_EXCLUDE_TWRPAPP := true
-
 RECOVERY_SDCARD_ON_DATA := true
+TW_EXCLUDE_TWRPAPP := true
+TW_EXTRA_LANGUAGES := true
+TW_HAS_EDL_MODE := true
 
-TWRP_INCLUDE_LOGCAT := true
+# Team Win Recovery - Crypto
+TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_REPACKTOOLS := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_NEW_ION_HEAP := true
+TW_USE_TOOLBOX := true
+
+# Team Win Recovery - Debug
+TARGET_USES_LOGD := true
+TWRP_INCLUDE_LOGCAT := true
 
 TW_INCLUDE_NTFS_3G := true
-TW_INCLUDE_CRYPTO := true
-TW_NEW_ION_HEAP := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+
+# Team Win Recovery - Display
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TW_NO_SCREEN_BLANK := true
 TW_NO_SCREEN_TIMEOUT := true
-TW_SCREEN_BLANK_ON_BOOT := true
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 150
 TW_THEME := portrait_hdpi
 
-TW_USE_TOOLBOX := true
 TW_Y_OFFSET := 80
 TW_H_OFFSET := -80
 
-# Team Win Recovery - USB
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+# Team Win Recovery - Rollback
+PLATFORM_VERSION := 16.1.0
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := 2099-12-31
 
 # Team Win Recovery - System Props
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental"
+
+# Team Win Recovery - Timezone
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+
+# Team Win Recovery - USB
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
